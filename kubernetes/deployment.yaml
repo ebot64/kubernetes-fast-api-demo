@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fast-api
+  labels:
+    app: fast-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: fast-api
+  template:
+    metadata:
+      labels:
+        app: fast-api
+    spec:
+      containers:
+      - name: fast-api
+        image: ebot64/k8-fastapi-demo:0.0.1
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 220m
+            memory: 300Mi
+          limits:
+            memory: 400Mi
+        env:
+          - name: ENV
+            value: "TOBE on CIVO"
